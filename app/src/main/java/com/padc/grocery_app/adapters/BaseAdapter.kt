@@ -17,6 +17,7 @@ abstract class BaseAdapter<T : BaseViewHolder<W>,W> : RecyclerView.Adapter<T>() 
 
     fun setNewData(data : List<W>){
         mData = data.toMutableList()
+        notifyDataSetChanged()
     }
 
 }

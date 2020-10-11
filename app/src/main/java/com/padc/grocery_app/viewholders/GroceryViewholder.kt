@@ -1,6 +1,8 @@
 package com.padc.grocery_app.viewholders
 
+import android.net.Uri
 import android.view.View
+import com.bumptech.glide.Glide
 import com.padc.grocery.data.vos.GroceryVO
 import com.padc.grocery_app.delegates.GroceryDelegate
 import kotlinx.android.synthetic.main.item_grocery.view.*
@@ -17,5 +19,12 @@ class GroceryViewholder(itemview : View,val mDelegate: GroceryDelegate) : BaseVi
         itemView.imgDelete.setOnClickListener {
             mDelegate.onTapDeleteGrocery(data.name ?: "")
         }
+        itemView.imgUpload.setOnClickListener {
+            mDelegate.onTapUpload(data)
+        }
+
+        Glide.with(itemView.context)
+            .load(data.image)
+            .into(itemView.image)
     }
 }

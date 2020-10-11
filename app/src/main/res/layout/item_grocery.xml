@@ -9,12 +9,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/groceryImage"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/grocery_img"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvGroceryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/groceryImage"
             android:textColor="@color/color_black"
             android:textStyle="bold"
             android:textSize="18dp"
@@ -22,15 +40,16 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvGroceryDescription"
-            android:layout_width="300dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvGroceryName"
             android:textColor="@color/color_blue_grey"
             android:text="This is a liquid"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:maxLines="2"/>
+            android:maxLines="2"
+            android:layout_toEndOf="@id/groceryImage"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNumberOfGrocery"
@@ -45,12 +64,23 @@
             android:layout_marginEnd="20dp"/>
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgUpload"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_cloud_download_24"
+            android:layout_below="@id/tvGroceryName"
+            android:layout_alignBottom="@id/imgEdit"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/tvGroceryDescription"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgEdit"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_baseline_edit_24"
             android:layout_below="@id/tvNumberOfGrocery"
-            android:layout_toEndOf="@id/tvGroceryDescription"
+            android:layout_toEndOf="@id/imgUpload"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"/>
 

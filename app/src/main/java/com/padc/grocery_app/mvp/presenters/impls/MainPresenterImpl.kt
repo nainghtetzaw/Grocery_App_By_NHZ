@@ -1,6 +1,8 @@
 package com.padc.grocery_app.mvp.presenters.impls
 
+import android.graphics.Bitmap
 import androidx.lifecycle.LifecycleOwner
+import com.padc.grocery.data.vos.GroceryVO
 import com.padc.grocery.mvp.presenters.AbstractBasePresenter
 import com.padc.grocery_app.data.models.GroceryModel
 import com.padc.grocery_app.data.models.GroceryModelImpl
@@ -10,9 +12,16 @@ import com.padc.grocery_app.mvp.views.MainView
 class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
 
     private val mModel : GroceryModel = GroceryModelImpl
+    private var mUpLoadGrocery : GroceryVO? = null
 
     override fun onTapAddGrocery(name: String, description: String, amount: Int) {
-        mModel.addOrUpdateGrocery(name,description,amount)
+        mModel.addOrUpdateGrocery(name,description,amount,"")
+    }
+
+    override fun onPhotoTaken(bitmap: Bitmap) {
+        mUpLoadGrocery?.let {
+            mModel.uploadGrocery(it,bitmap)
+        }
     }
 
     override fun onUiReady(owner: LifecycleOwner) {
@@ -26,6 +35,11 @@ class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
     }
 
     override fun onTapEditGrocery(name: String, description: String, amount: Int) {
-        mModel.addOrUpdateGrocery(name, description, amount)
+        mView.showGroceryDialog(name,description,amount.toString())
+    }
+
+    override fun onTapUpload(grocery: GroceryVO) {
+        mUpLoadGrocery = grocery
+        mView.openGallary()
     }
 }
