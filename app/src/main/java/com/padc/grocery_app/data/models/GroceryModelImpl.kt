@@ -22,7 +22,7 @@ object GroceryModelImpl : GroceryModel {
         mFireBaseApi.deleteGrocery(name)
     }
 
-    override fun uploadGrocery(grocery: GroceryVO, image: Bitmap) {
-        mFireBaseApi.uploadGrocery(grocery,image)
+    override fun uploadGrocery(image: Bitmap,onSuccess : (imageUrl : String) -> Unit) {
+        mFireBaseApi.uploadGrocery(image,onSuccess)
     }
 }

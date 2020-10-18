@@ -49,7 +49,7 @@ object RealtimeDatabaseImpl : FirebaseApi {
         database.child("groceries").child(name).removeValue()
     }
 
-    override fun uploadGrocery(grocery: GroceryVO, image: Bitmap) {
+    override fun uploadGrocery(image: Bitmap,onSuccess : (imageUrl : String) -> Unit) {
         val baos = ByteArrayOutputStream()
         image.compress(Bitmap.CompressFormat.JPEG,100,baos)
         val data = baos.toByteArray()
@@ -67,9 +67,8 @@ object RealtimeDatabaseImpl : FirebaseApi {
             val imageUrl = task.result?.toString()
             imageUrl?.let {
                 Log.e("URL",it)
+                onSuccess(it)
             }
-
-            addAndUpdateGrocery(grocery.name ?: "",grocery.description ?: "", grocery.amount ?: 0,imageUrl ?: "" )
         }
 
     }

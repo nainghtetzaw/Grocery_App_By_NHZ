@@ -11,16 +11,13 @@ class GroceryViewholder(itemview : View,val mDelegate: GroceryDelegate) : BaseVi
     override fun bindData(data: GroceryVO) {
         itemView.tvGroceryName.text = data.name
         itemView.tvGroceryDescription.text = data.description
-        itemView.tvNumberOfGrocery.text = "+${data.amount}"
+        itemView.tvNumberOfGrocery.text = data.amount.toString()
 
         itemView.imgEdit.setOnClickListener {
-            mDelegate.onTapEditGrocery(data.name ?: "",data.description ?: "",data.amount ?: 0)
+            mDelegate.onTapEditGrocery(data.name ?: "",data.description ?: "",data.amount ?: 0,data.image ?: "")
         }
         itemView.imgDelete.setOnClickListener {
             mDelegate.onTapDeleteGrocery(data.name ?: "")
-        }
-        itemView.imgUpload.setOnClickListener {
-            mDelegate.onTapUpload(data)
         }
 
         Glide.with(itemView.context)

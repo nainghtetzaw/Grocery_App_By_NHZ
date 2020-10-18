@@ -4,6 +4,6 @@ import com.padc.grocery.data.vos.GroceryVO
 
 interface MainView : BaseView {
     fun showGroceryView(groceryList : List<GroceryVO>)
-    fun showGroceryDialog(name : String,description : String,amount : String)
-    fun openGallary()
+    fun showGroceryDialog(name : String,description : String,amount : String,image : String)
+//    fun openGallary()
 }

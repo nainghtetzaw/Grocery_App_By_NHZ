@@ -12,16 +12,16 @@ import com.padc.grocery_app.mvp.views.MainView
 class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
 
     private val mModel : GroceryModel = GroceryModelImpl
-    private var mUpLoadGrocery : GroceryVO? = null
+//    private var mUpLoadGrocery : GroceryVO? = null
 
-    override fun onTapAddGrocery(name: String, description: String, amount: Int) {
-        mModel.addOrUpdateGrocery(name,description,amount,"")
+    override fun onTapAddGrocery(name: String, description: String, amount: Int,image : String) {
+        mModel.addOrUpdateGrocery(name,description,amount,image)
     }
 
-    override fun onPhotoTaken(bitmap: Bitmap) {
-        mUpLoadGrocery?.let {
-            mModel.uploadGrocery(it,bitmap)
-        }
+    override fun onPhotoTaken(bitmap: Bitmap,onSuccess : (imageUrl : String) -> Unit) {
+//        mUpLoadGrocery?.let {
+            mModel.uploadGrocery(bitmap,onSuccess)
+//        }
     }
 
     override fun onUiReady(owner: LifecycleOwner) {
@@ -34,12 +34,8 @@ class MainPresenterImpl : MainPresenter, AbstractBasePresenter<MainView>() {
         mModel.deleteGrocery(name)
     }
 
-    override fun onTapEditGrocery(name: String, description: String, amount: Int) {
-        mView.showGroceryDialog(name,description,amount.toString())
+    override fun onTapEditGrocery(name: String, description: String, amount: Int,image : String) {
+        mView.showGroceryDialog(name,description,amount.toString(),image)
     }
 
-    override fun onTapUpload(grocery: GroceryVO) {
-        mUpLoadGrocery = grocery
-        mView.openGallary()
-    }
 }

@@ -24,11 +24,22 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvGreetingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi Naing Htet Zaw"
+            android:textSize="20dp"
+            android:textColor="@color/color_black"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="25dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rViewGrocery"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_grocery"
+            android:layout_below="@id/tvGreetingText"
             android:padding="10dp" />
 
     </RelativeLayout>

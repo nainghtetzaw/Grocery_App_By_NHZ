@@ -11,5 +11,5 @@ interface GroceryModel {
     fun getGrocery(onSuccess : (List<GroceryVO>) -> Unit, onFailure : (String) -> Unit)
     fun addOrUpdateGrocery(name : String,description : String,amount : Int,image : String)
     fun deleteGrocery(name : String)
-    fun uploadGrocery(grocery : GroceryVO,image : Bitmap)
+    fun uploadGrocery(image : Bitmap,onSuccess: (imageUrl : String) -> Unit)
 }
